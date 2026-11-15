@@ -1,0 +1,16 @@
+services:
+  vikunja:
+    image: vikunja/vikunja:latest
+    container_name: vikunja
+    restart: unless-stopped
+    environment:
+      VIKUNJA_SERVICE_PUBLICURL: http://TU_IP:3456/
+      VIKUNJA_DATABASE_TYPE: sqlite
+      VIKUNJA_DATABASE_PATH: /db/vikunja.db
+      VIKUNJA_SERVICE_JWTSECRET: cambia-esto-por-un-secreto-largo
+      VIKUNJA_SERVICE_ENABLEREGISTRATION: "false"
+    ports:
+      - "3456:3456"
+    volumes:
+      - ./files:/app/vikunja/files
+      - ./db:/db
